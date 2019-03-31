@@ -1,19 +1,9 @@
-<div class="row">
+<div class="row m-5">
     <div class="col">
         <input #artistName type="text" (keyup)="searchArtist(artistName.value)" class="form-control" placeholder="Search an artist">
     </div>
 </div>
-<div class="card-columns mt-3">
-    <div *ngFor='let artistResult of searchResults' class="card">
-        <div *ngIf="artistResult.images[0]">
-            <img [src]="artistResult.images[0].url" class="card-img-top" [alt]="artistResult.name">
-        </div>
-        <div *ngIf="!artistResult.images[0]">
-            <img src="../../../assets/img/banner-ico.png" class="card-img-top" [alt]="artistResult.name">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">{{artistResult.name}}</h5>
-            <p class="card-text"><small class="text-muted">Genres: {{artistResult.genres}}</small></p>
-        </div>
-    </div>
-</div>
+
+<app-loading class="m-5" *ngIf="loading"></app-loading>
+
+<app-cards *ngIf="!loading" [items]='searchResults'></app-cards>
