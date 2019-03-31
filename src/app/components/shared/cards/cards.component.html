@@ -1,6 +1,11 @@
 <div class="card-columns animated fadeIn">
-    <div *ngFor='let item of items' class="card">
-        <img [src]="item.images[0].url" class="card-img-top" [alt]="item.name">
+    <div *ngFor='let item of items' class="card puntero" (click)="seeArtist(item)">
+        <div *ngIf="item.images[0]">
+            <img [src]="item.images[0].url" class="card-img-top" [alt]="item.name">
+        </div>
+        <div *ngIf="!item.images[0]">
+            <img src="../../../assets/img/banner-ico.png" class="card-img-top" [alt]="item.name">
+        </div>
         <div class="card-body">
             <h5 class="card-title">{{item.name}}</h5>
             <p class="card-text">
