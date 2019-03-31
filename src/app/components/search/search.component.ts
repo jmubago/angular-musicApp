@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class SearchComponent implements OnInit {
 
     this.loading = true;
 
-    this.spotify.getArtist(text)
+    this.spotify.getArtists(text)
     .subscribe(data => {
       this.searchResults = data;
       this.loading = false;
