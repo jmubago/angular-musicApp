@@ -19,7 +19,7 @@ export class SpotifyService {
         }));
   }
 
-  public getArtist(text: string): Observable<any> {
+  public getArtists(text: string): Observable<any> {
 
     return this.getQuery(`search?q=${text}&type=artist&limit=15`)
       .pipe( map( data => {
@@ -27,9 +27,15 @@ export class SpotifyService {
       }));
   }
 
+  public getArtist(artistId: string){
+    return this.getQuery(`artists/${artistId}`);
+  }
+
+
+  // ## Private Methods
   private getQuery(query: string){
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer BQBXY5itg1DwAXqkvze53k19HndDMy388G7pOJgNmv6ZoibWMYQkyaOtLgN69NqCtwUO47pDFIEP4nOqHaU'
+      'Authorization': 'Bearer BQAu4XYpQu0uS9FLbDy32UXVzQGSrTWj_29zxwfx2PlZjcSOipl1LiEgb-NYxChi-lGYKY7CKQlA6eamymY'
     });
 
     const url = `https://api.spotify.com/v1/${query}`;
