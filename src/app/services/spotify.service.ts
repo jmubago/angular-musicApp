@@ -31,11 +31,17 @@ export class SpotifyService {
     return this.getQuery(`artists/${artistId}`);
   }
 
+  public getTopTracks(artistId: string){
+    return this.getQuery(`artists/${artistId}/top-tracks?country=us`)
+      .pipe( map(data => {
+        return data['tracks']
+      }))
+  }
 
   // ## Private Methods
   private getQuery(query: string){
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer BQBcz5zieRHEj99i8Rt0U6XWNLvs5WZP61OmAd1Wsfy4V_oLAcpryGVvmhMmJzK2Y4AJ8_Cye1u3s5aLtZg'
+      'Authorization': 'Bearer BQBBnjW6ghk-E3qTyczv7tZ6fn3WTQHLLNVvekXetfy54FoNdbBrL44_qTdV4P9rrjTCRag0bDEl_7SK9Bg'
     });
 
     const url = `https://api.spotify.com/v1/${query}`;
