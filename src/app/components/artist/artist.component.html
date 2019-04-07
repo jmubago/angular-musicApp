@@ -1,9 +1,44 @@
-<div class="row">
+<app-loading class="m-5" *ngIf="loading"></app-loading>
+
+<div class="row" *ngIf="!loading">
     <div class="col-2">
         <div *ngIf="artist.images && artist.images[0] != undefined">
-            <img [src]="artist.images[0].url" alt="">
+            <img [src]="artist.images[0].url" class="img-thumbnail img-circle">
         </div>
     </div>
-    <div class="col"></div>
-    <div class="col-4"></div>
+    <div class="col">
+        <h3>{{ artist.name }}</h3>
+        <p>
+            <a [href]="artist.external_urls.spotify" target="_blank">Artist Spotify website</a>
+        </p>
+    </div>
+    <div class="col-4 text-right">
+        <button routerLink="/search" class="btn btn-outline-danger">Return</button>
+    </div>
+</div>
+
+<div class="row m-5">
+    <div class="col">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Picture</th>
+                    <th>Album</th>
+                    <th>Song</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let track of tracks">
+                    <td><img class="track-pic" src="{{track.album.images[0].url}}" alt=""></td>
+                    <td>{{track.album.name}}</td>
+                    <td>{{track.name}}</td>
+                    <td>
+                        <iframe [src]="track.id | domseguro:'https://open.spotify.com/embed/track/'" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">
+                        </iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
