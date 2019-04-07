@@ -18,6 +18,10 @@ hr {
     width: 150px;
 }
 
+.track-pic {
+    width: 60px;
+}
+
 .card-title,
 .card-text {
     color: black;
